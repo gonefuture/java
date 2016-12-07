@@ -13,7 +13,8 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 	/*
-	 * @gonefuture
+	 * @钱伟健
+	 * 
 	 * 键盘录入数组然后排序输出
 	 */
 public class Practice_1 {
@@ -34,7 +35,8 @@ public class Practice_1 {
 		//Collections.sort(numberList);  //因为munberList里面的是Integer，所以不用重写compare			
 		//practice_1.output_1(practice_1.insertSort(numberList));   //直接插入排序法
 		//practice_1.output_1(practice_1.shellSort(numberList));       //希尔排序
-		practice_1.output_1(practice_1.selectSort(numberList));
+		//practice_1.output_1(practice_1.selectSort(numberList));		  //选择排序
+		practice_1.output_1(practice_1.heapSort(numberList));
 		
 		//practice_1.output_1();	//整型数组用增强逐个输出
 		//System.out.print(numberList);
@@ -57,7 +59,7 @@ public class Practice_1 {
 	public void bufferedReader(){
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String read  =null;
-		System.out.println("请输入数组，以“，”，回车完成输入");
+		System.out.println("请输入数组，以 “，” 分隔，回车完成输入");
 		try{
 			read = br.readLine();
 		} catch (IOException e){
@@ -182,23 +184,72 @@ public class Practice_1 {
 		return  array;
 	}
 	
+	
 	/*
-	 * 	堆排序	
+	 * 	堆排序	 (虽然学了堆和二叉树，但是这个排序算法还是不太懂)
 	 */
-	public void heapSort(ArrayList<Integer> list){
+	public int[] heapSort(ArrayList<Integer> list){
 		int[] array = listToArray(list);
 		//循环建堆
 		for(int i=0; i<array.length-1; i++){
 			//建堆
-			//buildMaxHeap(array,array.length-1-i);
+			buildMaxHeap(array,array.length-1-i);
 			//交换堆顶和最后的一个元素
-			//swap(array,0,array.length-1-i);
-			System.out.println(Arrays.toString(array));
-		}
-		
+			swap(array,0,array.length-1-i);
+		}	
+		return array;
 	}
 	
+	private void swap(int[] data, int i, int j){
+		int temp = data[i];
+		data[i] = data[j];
+		data[j] = temp;
+	}
 	
+	//对data数组从0到到lastIndex建大顶堆
+	private void buildMaxHeap(int[] data, int lastIndex){
+		//从lastIndex处节点（最后一个节点）的父节点开始
+		for(int i=(lastIndex-1)/2; i>0; i--){
+			
+			//k处保存正在判断的节点
+			int k=i;
+			
+			//如果当前k节点的子节点存在
+			while(k*2+1 <= lastIndex){
+				
+				//k节点的左子节点的索引
+				int biggerIndex = 2*k+1;
+				
+				//如果biggerIndex小于lastIndex,即biggerInddex+1代表的k节点的做子节点存在
+				if(biggerIndex < lastIndex){
+					
+					//如果右子节点的值较大
+					if(data[biggerIndex] < data[biggerIndex+1]){
+						
+						//biggerIndex总是记录较大子节点的索引
+						biggerIndex++;
+					}
+				}
+				
+				//如果k节点的值小于其较大的子节点的值
+				if(data[k] < data[biggerIndex]){
+					
+					//交换他们
+					swap(data,k,biggerIndex);
+					
+					//将biggerIndex赋予k,开始while循环的下一次循环，重新保证k节点的值大于其左右节点的值
+					k=biggerIndex;
+				}else{
+					break;
+				}
+			}
+		}
+	}
+
+	/*
+	 * 归并排序
+	 */
+
 	/*
 	 * 	List的排序方法 
 	 */
