@@ -20,13 +20,17 @@ public class Main {
 				n *= 10;
 				n = n % m;
 				if(n==0) return 0;
-				if(v.indexOf(n)>=0)  
-				return 	
+				if(v.indexOf(n)>=0)
+						/*
+					 int indexOf(Object o) 
+				          返回此向量中第一次出现的指定元素的索引，如果此向量不包含该元素，则返回 -1。 
+				          */
+				return 	v.size()-v.indexOf(n);
 			    ;  //填空
 			}
 		}
 		public static void main(String[] args){
-			
+			System.out.println(f(11,13));
 		}
 
 }
