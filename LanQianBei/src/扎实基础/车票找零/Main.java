@@ -17,7 +17,7 @@ int f(int m, int n)
 	 */
 public class Main {
 	public static void main(String[] args){
-		
+		System.out.println(f(3,3));
 	}
 	
 	/**
@@ -26,7 +26,7 @@ public class Main {
 	public static int f(int m,int n){
 		if(m < n) return 0;
 		if(n == 0) return 1;
-		return 0;
+		return  f(m-1,n)+f(m,n-1);
 	}
 
 }

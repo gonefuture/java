@@ -26,8 +26,8 @@ public class Main {
 				          返回此向量中第一次出现的指定元素的索引，如果此向量不包含该元素，则返回 -1。 
 				          */
 				return 	v.size()-v.indexOf(n);
-			    ;  //填空
 			}
+			
 		}
 		public static void main(String[] args){
 			System.out.println(f(11,13));

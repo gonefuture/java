@@ -21,11 +21,11 @@ public class Main{
 		
 		for( i =1; i<50;i++ ){
 			for( j =i+2; j<49; j++){
-				//注意题干，所有信息都是有用的。
+				//注意题干，所有信息都是有用的找出不同的地方。
 				int t1=1225-i-(i+1)-j-(j+1);    
 		        int t2=2015-i*(i+1)-j*(j+1);  
 		        if(t1==t2) 
-		        	System.out.println(i);;
+		        	System.out.println(i);
 			}	
 		}
 	}
