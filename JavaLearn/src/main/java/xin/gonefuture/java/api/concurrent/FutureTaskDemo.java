@@ -1,6 +1,6 @@
-package xin.gonefuture.demo.concurrent;
+package xin.gonefuture.java.api.concurrent;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;

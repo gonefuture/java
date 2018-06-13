@@ -1,5 +1,7 @@
 /build/
 /target/
+*/build/
+*/target/
 /.externalToolBuilders/
 /.settings/
 .settings/
@@ -15,6 +17,8 @@
 *.classpath
 *.settings
 *.classes
+*.class
+*.jar
 
 #Mac OSX
 .DS_Store
