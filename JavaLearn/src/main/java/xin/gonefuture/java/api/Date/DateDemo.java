@@ -7,6 +7,7 @@ package xin.gonefuture.java.api.Date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,6 +31,10 @@ public class DateDemo {
         System.out.println("Calendar类: "+df.format(calendar.getTime()));
 
         System.out.println((now.getTime() - pass.getTime()) / (24*60*60*1000));
+
+        System.out.println(LocalDateTime.now());
+
+
 
     }
 }

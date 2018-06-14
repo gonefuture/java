@@ -22,7 +22,7 @@ class FutureTaskDemo {
         ExecutorService executorService  = Executors.newSingleThreadExecutor();
         //  创建FutureTask并发任务
         FutureTask<String> futureTask = new FutureTask<String>(
-                //  使用Callable接口作为构造参数
+                //  使用Callable接口作为构造参数+
                 () -> {
                     //  真正的任务在这里执行,这里的返回值类型为为String,可以为任意类型
                     System.out.println("这里是Callable的执行");

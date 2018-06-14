@@ -45,8 +45,9 @@ public class CompletableFutureDemo {
         //Thread.sleep(2000);
 
         System.out.println("获取future的值前");
-        System.out.println("completableFuture返回的值 "+completableFuture.get());
+       // System.out.println("completableFuture返回的值 "+completableFuture.get());
         System.out.println("获取futured的后");
+        Thread.sleep(2000);
 
 
 

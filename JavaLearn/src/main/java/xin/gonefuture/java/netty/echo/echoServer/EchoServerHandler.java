@@ -6,6 +6,8 @@ package xin.gonefuture.java.netty.echo.echoServer;
  */
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
@@ -27,10 +29,24 @@ public class EchoServerHandler extends ChannelHandlerAdapter {
         System.out.println("Server received: "+ in.toString(CharsetUtil.UTF_8));
         // 将收到的消息写给发送者,而不冲刷出站消息
         ctx.write(in);
-        Map map = new HashMap();
     }
 
+    /*
+    *   处理异常
+     */
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        cause.printStackTrace();
+        ctx.close();
+    }
 
+    /*
+    *   将未决信息冲刷到远程节点,并且关闭Channel
+     */
+    @Override
+    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
 
-
+        ctx.writeAndFlush(Unpooled.EMPTY_BUFFER)
+                .addListener(ChannelFutureListener.CLOSE);
+    }
 }
