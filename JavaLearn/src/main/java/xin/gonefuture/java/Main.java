@@ -1,11 +1,17 @@
 package xin.gonefuture.java;
 
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Main   {
 
-
+    ConcurrentHashMap map;
 
     static int cnt = 6;
     {
@@ -40,7 +46,14 @@ public class Main   {
     };
 
 
-    public static void  main(String[] args) {
+    public static void  main(String[] args) throws SQLException {
+
+        Connection connection = DriverManager.getConnection("");
+
+
+        PreparedStatement preparedStatement = connection.prepareStatement("");
+
+
         ThreadLocal<SimpleDateFormat> dateFormat = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
 
     }

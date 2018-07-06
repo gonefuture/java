@@ -5,6 +5,7 @@ package xin.gonefuture.java.api.concurrent;
  *  说明：
  */
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -17,5 +18,10 @@ public class LockDemo {
 
         Lock lock = new ReentrantLock();
         Thread t = new Thread("test");
+
+        Callable<Integer> a = () -> {
+
+            return 10;
+        };
     }
 }

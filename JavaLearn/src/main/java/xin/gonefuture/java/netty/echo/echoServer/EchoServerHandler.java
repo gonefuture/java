@@ -28,7 +28,7 @@ public class EchoServerHandler extends ChannelHandlerAdapter {
         // 将消息打印到控制台
         System.out.println("Server received: "+ in.toString(CharsetUtil.UTF_8));
         // 将收到的消息写给发送者,而不冲刷出站消息
-        ctx.write(in);
+        ctx.write(Unpooled.copiedBuffer("收到,这是回复",CharsetUtil.UTF_8));
     }
 
     /*

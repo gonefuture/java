@@ -17,7 +17,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * <pre> </pre>
  */
 public class SubmitDemo {
-    private static int init = 10;
+    private static volatile int init = 10;
     // 这个所是对整个类有效的.如果要对对象有用的话,要注意去掉`static`关键字
     private static Lock lock = new ReentrantLock();
 

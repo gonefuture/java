@@ -13,6 +13,8 @@ import io.netty.channel.nio.NioEventLoop;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.sctp.nio.NioSctpServerChannel;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.net.InetSocketAddress;
 import java.sql.Date;
@@ -51,7 +53,7 @@ public class EchoServer {
         try {
             bootstrap.group(group)
                     // 3.指定所使用的NIO传输Channel
-                    .channel(NioSctpServerChannel.class)
+                    .channel(NioServerSocketChannel.class)
                     // 4.使用指定的端口设置套接字
                     .localAddress(new InetSocketAddress(port))
                     // 5.添加一个EchoServerHandler到子Channel的ChannelPipeline
@@ -64,6 +66,7 @@ public class EchoServer {
             // 异步绑定服务器;调用sync()方法阻塞等待直到绑定完成
             ChannelFuture f = bootstrap.bind().sync();
             // 获取Channel的CloseFuture,并且阻塞当前线程知道它完成
+            f.channel().closeFuture().sync();
         }finally {
             // 关闭EventLoopGroup释放所有的资源
             group.shutdownGracefully().sync();
