@@ -15,13 +15,13 @@
     <!-- 自动扫描包 ,将带有注解的类 纳入spring容器管理 -->
     <util:properties id="appProperties" location="classpath:/app.properties" />
 
-    <bean id="injectedObject" class="xin.gonefuture.spring.InjectedObject">
+    <bean id="injectedObject" class="top.gonefuture.spring.InjectedObject">
         <constructor-arg value="基本类型构造参数"/>
         <!--<property name="defaultLocale" value="zh_CN"/>-->
     </bean>
 
 
-    <bean id="user" class="xin.gonefuture.spring.UserFactoryBean">
+    <bean id="user" class="top.gonefuture.spring.UserFactoryBean">
         <property name="name" value="gonefuture"/>
         <property name="email" value="gonefuture@qq.com"/>
     </bean>
