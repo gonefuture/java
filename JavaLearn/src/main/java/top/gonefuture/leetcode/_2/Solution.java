@@ -7,6 +7,18 @@ package top.gonefuture.leetcode._2;
  * @time 2018/7/27 16:51
  */
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.TypeConverter;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.config.DependencyDescriptor;
+import org.springframework.beans.factory.config.NamedBeanHolder;
+import org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory;
+import org.springframework.core.ResolvableType;
+
+import java.util.*;
+
 /**
  *
  * You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
@@ -36,23 +48,7 @@ public class Solution {
         StringBuilder a = new StringBuilder();
         StringBuilder b = new StringBuilder();
 
-        ListNode temp;
 
-        a.append(l1.val);
-        temp = l1;
-        while ( temp.next != null) {
-            a.append(l1.next.val);
-            System.out.println("a: "+a);
-            temp = temp.next;
-        }
-
-        b.append(l2.val);
-        temp = l2;
-        while ( temp.next != null) {
-            b.append(l2.next.val);
-            System.out.println("b: "+b);
-            temp = temp.next;
-        }
 
 
         int sum = Integer.valueOf(a.reverse().toString()) +
@@ -71,6 +67,8 @@ public class Solution {
         }
 
         return listNode;
-
     }
+
+
+
 }
