@@ -17,6 +17,7 @@ import java.util.*;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static top.gonefuture.java.grammar.staticImport.Function.*;
@@ -28,6 +29,7 @@ public  class Main    {
 
     Set set;
     EnumMap<Sex,Integer> e;
+    Future f;
 
 
 
