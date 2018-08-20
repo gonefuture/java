@@ -6,6 +6,7 @@ package top.gonefuture.java.api.collection;
  */
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -50,6 +51,10 @@ public class SetDemo {
         result.addAll(setA);
         result.removeAll(setB);
         System.out.println(result);
+
+
+        System.out.println("==============");
+
 
 
     }

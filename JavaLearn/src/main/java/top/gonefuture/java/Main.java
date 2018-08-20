@@ -11,13 +11,13 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 
-import java.util.Collections;
-import java.util.EnumMap;
+import java.util.*;
 
 
-import java.util.Set;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static top.gonefuture.java.grammar.staticImport.Function.*;
@@ -25,8 +25,11 @@ import static top.gonefuture.java.grammar.staticImport.Function.*;
 public  class Main    {
 
     Throwable throwable;
+    HashMap hasp;
+
     Set set;
     EnumMap<Sex,Integer> e;
+    Future f;
 
 
 
@@ -77,16 +80,15 @@ public  class Main    {
      * @param args
      * @throws SQLException hhg
      */
-    public static void  main(final String[] args) {
+    public static void  main(final String[] args) throws InterruptedException {
 
         for( Method m  : Main.class.getDeclaredMethods()) {
             m.getAnnotation(Test.class).expected();
         }
 
+        Executors.newCachedThreadPool().submit(()-> {System.out.println("aaaaaaaa"); });
 
-        BlockingDeque d;
-
-        ReentrantLock f;
+        Thread.sleep(3000);
         ThreadLocal<SimpleDateFormat> dateFormat = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
 
         System.out.println(add(1,2));

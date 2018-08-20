@@ -1,4 +1,4 @@
-package top.gonefuture.java.algorithm.sort.quickSort;
+package top.gonefuture.algorithm.sort.quickSort;
 /*
  *  @author : 钱伟健 gonefuture@qq.com
  *  @version    : 2018/6/29 17:20.
@@ -16,7 +16,7 @@ public class QuickSort {
     /**
      *   获取基准
      */
-    static public int partition(int[] arr, int low, int high) {
+    public static  int partition(int[] arr, int low, int high) {
         int i= low, j = high;
         int temp = arr[low];
         while (i != j) {
@@ -49,5 +49,41 @@ public class QuickSort {
         quickSort(arr,0, arr.length-1);
         System.out.println("排序后: "+Arrays.toString(arr));
 
+    }
+
+
+
+
+
+
+
+    public void quickSort2(int[]a,int start,int end){
+        if(start < end){
+            int baseNum=a[start];//选基准值
+            int midNum;//记录中间值
+            int i=start;
+            int j=end;
+            do{
+                while((a[i]<baseNum)&&i<end){
+                    i++;
+                }
+                while((a[j]>baseNum)&&j>start){
+                    j--;
+                }
+                if(i<=j){
+                    midNum=a[i];
+                    a[i]=a[j];
+                    a[j]=midNum;
+                    i++;
+                    j--;
+                }
+            }while(i<=j);
+            if(start<j){
+                quickSort(a,start,j);
+            }
+            if(end>i){
+                quickSort(a,i,end);
+            }
+        }
     }
 }
