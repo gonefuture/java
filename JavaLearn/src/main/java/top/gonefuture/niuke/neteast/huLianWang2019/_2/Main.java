@@ -1,5 +1,6 @@
 package top.gonefuture.niuke.neteast.huLianWang2019._2;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
