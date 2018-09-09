@@ -16,14 +16,17 @@ public class QuickSort {
     /**
      *   获取基准
      */
-    public static  int partition(int[] arr, int low, int high) {
+    private static  int partition(int[] arr, int low, int high) {
+        // 定义高和低两个数
         int i= low, j = high;
+        // 已最低位的数为基准
         int temp = arr[low];
+        //
         while (i != j) {
-            while(j>i&&arr[j]>=temp)
+            while(j>i && arr[j]>=temp)
                 j--;
             arr[i]=arr[j];
-            while(i<j&&arr[i]<=temp )
+            while(i<j && arr[i]<=temp )
                 i++;
             arr[j]=arr[i];
         }
@@ -31,7 +34,7 @@ public class QuickSort {
         return i;
     }
 
-    static void quickSort(int[] arr, int low, int high) {
+    private static void quickSort(int[] arr, int low, int high) {
         int i;
         if (low < high) {
             i = partition(arr, low, high);
