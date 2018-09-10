@@ -54,15 +54,12 @@ public class QuickSort {
 
 
 
-
-
-
     public void quickSort2(int[]a,int start,int end){
         if(start < end){
             int baseNum=a[start];//选基准值
             int midNum;//记录中间值
-            int i=start;
-            int j=end;
+            int i = start;
+            int j = end;
             do{
                 while((a[i]<baseNum)&&i<end){
                     i++;
