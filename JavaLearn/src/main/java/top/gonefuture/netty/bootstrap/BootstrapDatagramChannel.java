@@ -22,11 +22,10 @@ public class BootstrapDatagramChannel {
         .handler(
                 new SimpleChannelInboundHandler<DatagramPacket>() {
                     @Override
-                    protected void messageReceived(ChannelHandlerContext ctx, DatagramPacket msg) throws Exception {
+                    protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket msg) throws Exception {
                         // 记录信息已经被接受
                         System.out.println(
-                                "Client received: " + msg
-                        );
+                                "Client received: " + msg);
                     }
                 }
         );

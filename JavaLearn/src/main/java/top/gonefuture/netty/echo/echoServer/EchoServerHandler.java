@@ -7,20 +7,15 @@ package top.gonefuture.netty.echo.echoServer;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelHandler;
-import io.netty.channel.ChannelHandlerAdapter;
-import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.*;
 import io.netty.util.CharsetUtil;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * <pre> </pre>
  */
 @ChannelHandler.Sharable    // 标志一个ChannelHandler可以被多个Channel安全地共享
-public class EchoServerHandler extends ChannelHandlerAdapter {
+public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
