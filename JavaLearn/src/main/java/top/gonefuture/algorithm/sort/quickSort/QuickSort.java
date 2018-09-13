@@ -25,7 +25,10 @@ public class QuickSort {
         while (i != j) {
             while(j>i && arr[j]>=temp)
                 j--;
-            arr[i]=arr[j];
+
+            //
+            arr[i] = arr[j];
+
             while(i<j && arr[i]<=temp )
                 i++;
             arr[j]=arr[i];
@@ -34,11 +37,14 @@ public class QuickSort {
         return i;
     }
 
+
     private static void quickSort(int[] arr, int low, int high) {
-        int i;
+        // 确保低位索引始终小于高位索引
         if (low < high) {
-            i = partition(arr, low, high);
+            int i = partition(arr, low, high);
+            // 从低位找
             quickSort(arr,low,i-1);
+            // 从高位找
             quickSort(arr, i+1,high);
         }
     }
@@ -57,15 +63,12 @@ public class QuickSort {
 
 
 
-
-
-
     public void quickSort2(int[]a,int start,int end){
         if(start < end){
             int baseNum=a[start];//选基准值
             int midNum;//记录中间值
-            int i=start;
-            int j=end;
+            int i = start;
+            int j = end;
             do{
                 while((a[i]<baseNum)&&i<end){
                     i++;

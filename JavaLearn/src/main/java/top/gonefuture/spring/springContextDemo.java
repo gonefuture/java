@@ -27,8 +27,5 @@ public class springContextDemo {
         System.out.println("================");
         System.out.println(user);
 
-
-
-
     }
 }

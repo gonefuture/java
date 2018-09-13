@@ -1,4 +1,4 @@
-package top.gonefuture.java.netty.UsingUDPBroadcastEvent;
+package top.gonefuture.netty.UsingUDPBroadcastEvent;
 
 import java.net.InetSocketAddress;
 

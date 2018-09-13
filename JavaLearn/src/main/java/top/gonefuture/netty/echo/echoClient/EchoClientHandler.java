@@ -1,4 +1,4 @@
-package top.gonefuture.java.netty.echo.echoClient;
+package top.gonefuture.netty.echo.echoClient;
 /*
  *  @author : 钱伟健 gonefuture@qq.com
  *  @version    : 2018/6/13 11:26.
@@ -27,17 +27,6 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
         ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!",CharsetUtil.UTF_8));
     }
 
-
-
-
-    @Override
-    protected void messageReceived(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {
-        // 记录信息已经被接受
-        System.out.println(
-                "Client received: " + byteBuf.toString(CharsetUtil.UTF_8)
-        );
-    }
-
     /*
         在发生异常时,记录错误并关闭Channel
      */
@@ -45,5 +34,13 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
         ctx.close();
+    }
+
+    @Override
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {
+        // 记录信息已经被接受
+        System.out.println(
+                "Client received: " + byteBuf.toString(CharsetUtil.UTF_8)
+        );
     }
 }

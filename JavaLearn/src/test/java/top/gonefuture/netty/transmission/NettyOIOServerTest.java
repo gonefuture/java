@@ -1,13 +1,13 @@
 /**  
  * 
  * @Title:  NettyOIOServer.java   
- * @Package top.gonefuture.java.netty.transmission
+ * @Package top.gonefuture.netty.transmission
  * @Description:    TODO(用一句话描述该文件做什么)   
  * @author: qianweijian gonefuture@qq.com   
  * @date:   2018年7月10日 下午12:11:36   
  * @version V1.0 
  */
-package top.gonefuture.java.netty.transmission;
+package top.gonefuture.netty.transmission;
 
 
 

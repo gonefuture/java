@@ -1,31 +1,25 @@
 /**  
  * 
  * @Title:  NettyOIOServer.java   
- * @Package top.gonefuture.java.netty.transmission
+ * @Package top.gonefuture.netty.transmission
  * @Description:    TODO(用一句话描述该文件做什么)   
  * @author: qianweijian gonefuture@qq.com   
  * @date:   2018年7月10日 上午11:16:55   
  * @version V1.0 
  */
-package top.gonefuture.java.netty.transmission;
+package top.gonefuture.netty.transmission;
 
 import java.net.InetSocketAddress;
 
 
+import io.netty.channel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelHandlerAdapter;
-import io.netty.channel.ChannelHandlerContext;
 
-import io.netty.channel.ChannelInitializer;
-
-import io.netty.channel.EventLoopGroup;
 import io.netty.channel.oio.OioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.oio.OioServerSocketChannel;
@@ -58,7 +52,7 @@ public class NettyOIOServer {
 					ch.pipeline()
 					.addLast(
 							// 添加一个ChannelHandlerAdapter以拦截和处理事件
-							new ChannelHandlerAdapter () {
+							new ChannelInboundHandlerAdapter() {
 								@Override
 								public void channelActive(ChannelHandlerContext ctx)  throws Exception{
 									// 将消息写到客户端，并台南佳ChannelFutureListener以便消息已被写完就关闭连接

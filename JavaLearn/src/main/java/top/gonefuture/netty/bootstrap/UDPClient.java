@@ -1,4 +1,4 @@
-package top.gonefuture.java.netty.bootstrap;
+package top.gonefuture.netty.bootstrap;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

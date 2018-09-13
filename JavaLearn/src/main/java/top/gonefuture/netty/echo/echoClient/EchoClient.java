@@ -1,4 +1,4 @@
-package top.gonefuture.java.netty.echo.echoClient;
+package top.gonefuture.netty.echo.echoClient;
 /*
  *  @author : 钱伟健 gonefuture@qq.com
  *  @version    : 2018/6/13 11:29.
@@ -57,6 +57,7 @@ public class EchoClient {
             );
             return;
         }
+
         String host = args[0];
         int port = Integer.parseInt(args[1]);
         new EchoClient(host,port).start();

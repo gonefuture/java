@@ -1,13 +1,13 @@
 /**  
  * 
  * @Title:  PlainOIOServerTest.java   
- * @Package top.gonefuture.java.netty.transmission
+ * @Package top.gonefuture.netty.transmission
  * @Description:    TODO(用一句话描述该文件做什么)   
  * @author: qianweijian gonefuture@qq.com   
  * @date:   2018年7月9日 下午12:26:42   
  * @version V1.0 
  */
-package top.gonefuture.java.netty.transmission;
+package top.gonefuture.netty.transmission;
 
 import java.io.IOException;
 
