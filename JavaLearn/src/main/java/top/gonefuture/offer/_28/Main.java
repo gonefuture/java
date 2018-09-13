@@ -6,7 +6,7 @@ package top.gonefuture.offer._28;
  * @version 1.00
  * Description: 字符串的排列
  */
-public class Main {
+public class  Main {
 
     public static void main(String[] args) {
 
