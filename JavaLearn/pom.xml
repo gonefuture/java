@@ -99,11 +99,25 @@
             <version>3.8</version>
         </dependency>
 
+
+        <!-- lombok 插件 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.2</version>
+            <scope>provided</scope>
+        </dependency>
+
+
     </dependencies>
 
     <build>
         <plugins>
-
+            <plugin>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.2</version>
+            </plugin>
         </plugins>
     </build>
 

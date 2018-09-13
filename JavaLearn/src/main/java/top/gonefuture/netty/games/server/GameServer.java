@@ -1,4 +1,4 @@
-package top.gonefuture.netty.games;
+package top.gonefuture.netty.games.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -19,6 +19,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class GameServer {
 
+
     //绑定端口
     public void bind(int port) throws Exception {
         // 逻辑线程组
@@ -30,6 +31,8 @@ public class GameServer {
         bootstrap.group(bossGroup, workGroup)
                 .channel(NioServerSocketChannel.class)
                 .option(ChannelOption.SO_BACKLOG, 1024) // 最大客户端连接数为1024
+                //是否启用心跳保活机制
+                .childOption(ChannelOption.SO_KEEPALIVE, true)
         .childHandler(new ChannelInitializer<SocketChannel>() {
 
             @Override

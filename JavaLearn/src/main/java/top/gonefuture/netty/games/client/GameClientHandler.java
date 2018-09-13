@@ -1,4 +1,4 @@
-package top.gonefuture.netty.games;
+package top.gonefuture.netty.games.client;
 /*
  *  @author : 钱伟健 gonefuture@qq.com
  *  @version    : 2018/6/13 11:26.
@@ -7,10 +7,13 @@ package top.gonefuture.netty.games;
 
 import io.netty.buffer.ByteBuf;
 
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -21,10 +24,12 @@ import io.netty.util.CharsetUtil;
 @ChannelHandler.Sharable
 public class GameClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
+    private Logger log = LoggerFactory.getLogger(GameClientHandler.class);
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         // 当被通知Channel是活跃的时候,发送一条信息
-        //ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!",CharsetUtil.UTF_8));
+        //ctx.writeAndFlush(Unpooled.copiedBuffer(Unpooled.copiedBuffer("客户端: " + ctx.channel().id() + "连接",CharsetUtil.UTF_8)));
     }
 
 
@@ -39,10 +44,10 @@ public class GameClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, ByteBuf byteBuf) throws Exception {
         // 记录信息已经被接受
-        System.out.println(
-                "客户端接受的信息: " + byteBuf.toString(CharsetUtil.UTF_8)
+        log.info(
+                "客户端:"+ ctx.channel().id() + "接受到信息: \n"+  byteBuf.toString(CharsetUtil.UTF_8)
         );
     }
 }
