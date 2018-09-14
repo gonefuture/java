@@ -1,7 +1,7 @@
 package top.gonefuture.netty.games.service;
 
 import org.springframework.stereotype.Service;
-import top.gonefuture.netty.games.cache.manager.CacheManager;
+import top.gonefuture.netty.games.cache.manager.GameCacheManager;
 import top.gonefuture.netty.games.common.MapMarker;
 import top.gonefuture.netty.games.entity.map.GameMap;
 import top.gonefuture.netty.games.entity.map.Position;
@@ -20,7 +20,7 @@ public class RoleMoveService {
 
     private GameMap  gameMap = new GameMap("桃花源",10,10);
     private MapMarker[][] map = new MapMarker[10][10];
-    private  static CacheManager cacheManager = CacheManager.getInstance();
+    private  static GameCacheManager gameCacheManager = GameCacheManager.getInstance();
 
 
     {
@@ -49,7 +49,7 @@ public class RoleMoveService {
     }
 
     public String currentLocation() {
-        Role role = (Adventurer)cacheManager.get("hero");
+        Role role = (Adventurer) gameCacheManager.get("hero");
         Position p = role.getPosition();
         map[p.getX()][p.getY()] = MapMarker.ROLE;
         return gameMap.StringMap();

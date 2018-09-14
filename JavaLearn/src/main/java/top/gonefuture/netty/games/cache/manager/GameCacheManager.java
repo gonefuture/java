@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 @Slf4j
-public class CacheManager {
+public class GameCacheManager {
 
     private final Map<String, Object> cacheMap;
     //加载因子
@@ -30,7 +30,7 @@ public class CacheManager {
      2. 它本身有一个方法用于判断是否需要删除最不经常读取的数据，但是，该方法默认是不需要移除的，所以，我们需要继承重写这个方法。
      当缓存超过最大的缓存值后，执行这个方法。大家可以去看看这个类的API。
      */
-    private CacheManager(){
+    private GameCacheManager(){
         final int cacheSize = 16;
         //这里为true，表示按访问顺序存储，最常访问的数据会放在前面
         cacheMap = new ConcurrentHashMap<>(new LinkedHashMap<String, Object>(cacheSize, loadFactor,true){
@@ -78,13 +78,13 @@ public class CacheManager {
 
 
     private static class InstanceHolder {
-        private static final CacheManager cacheManager = new CacheManager();
+        private static final GameCacheManager GAME_CACHE_MANAGER = new GameCacheManager();
     }
 
 
-    public static CacheManager getInstance() {
+    public static GameCacheManager getInstance() {
 
-        return InstanceHolder.cacheManager;
+        return InstanceHolder.GAME_CACHE_MANAGER;
 
     }
 }

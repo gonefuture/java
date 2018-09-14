@@ -33,7 +33,6 @@ public class GameClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     }
 
 
-
     /*
         在发生异常时,记录错误并关闭Channel
      */

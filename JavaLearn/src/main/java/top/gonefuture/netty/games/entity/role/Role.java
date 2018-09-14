@@ -7,7 +7,7 @@ import top.gonefuture.netty.games.entity.map.Position;
  * @author gonefuture  gonefuture@qq.com
  * time 2018/9/12 15:41
  * @version 1.00
- * Description: 角色接口
+ * Description: 角色骨架类
  */
 @Data
 public abstract class Role {

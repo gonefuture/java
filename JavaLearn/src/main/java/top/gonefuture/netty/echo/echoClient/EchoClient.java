@@ -12,12 +12,15 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.springframework.stereotype.Service;
 
 import java.net.InetSocketAddress;
 
 /**
  * <pre> </pre>
  */
+
+@Service
 public class EchoClient {
     private final String host;
     private final int port;
