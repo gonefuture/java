@@ -1,4 +1,4 @@
-package top.gonefuture.netty.games.gameMaps;
+package top.gonefuture.netty.games.entity.map;
 
 /**
  * @author gonefuture  gonefuture@qq.com
@@ -6,16 +6,19 @@ package top.gonefuture.netty.games.gameMaps;
  * @version 1.00
  * Description: JavaLearn
  */
-public interface IGameMap {
+public interface IGameMap<T> {
 
 
     // 初始化地图并返回
-    int[][] init();
+    T [][] init();
 
     // 设置一个地图
-    int[][] getMap();
+    T [][] getMap();
 
     // 设置一个地图
-    void setMap(int[][] map);
+    void setMap(T [][] map);
+
+
+    String StringMap();
 
 }

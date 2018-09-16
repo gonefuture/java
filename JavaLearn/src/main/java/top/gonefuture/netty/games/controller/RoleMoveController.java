@@ -1,4 +1,4 @@
-package top.gonefuture.netty.games;
+package top.gonefuture.netty.games.controller;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -15,12 +15,12 @@ public class RoleMoveController {
 
     private ByteBuf in;
 
-    public RoleMoveController(Object msg) {
-        this.in = (ByteBuf) msg;
+    public RoleMoveController(ByteBuf byteBuf) {
+        this.in = byteBuf;
     }
 
 
-    ByteBuf result() {
+    public ByteBuf result() {
         return Unpooled.copiedBuffer("你移动的方向是"+in.toString(CharsetUtil.UTF_8),
                 CharsetUtil.UTF_8);
     }

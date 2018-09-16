@@ -1,4 +1,4 @@
-package top.gonefuture.netty.games;
+package top.gonefuture.netty.games.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -8,6 +8,10 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 
 /**
@@ -16,7 +20,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @version 1.00
  * Description: 游戏服务端
  */
-
+@Slf4j
+@Component
 public class GameServer {
 
     //绑定端口
@@ -30,12 +35,14 @@ public class GameServer {
         bootstrap.group(bossGroup, workGroup)
                 .channel(NioServerSocketChannel.class)
                 .option(ChannelOption.SO_BACKLOG, 1024) // 最大客户端连接数为1024
+                //是否启用心跳保活机制
+                .childOption(ChannelOption.SO_KEEPALIVE, true)
         .childHandler(new ChannelInitializer<SocketChannel>() {
 
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
                 // 这里添加业务处理handler
-                ch.pipeline().addLast(new ServerHandler());
+                ch.pipeline().addLast( new ServerHandler());
             }
         });
 
@@ -56,6 +63,15 @@ public class GameServer {
     public static void main(String[] args) throws Exception {
         int port = 8000;
         new GameServer().bind(port);
+    }
+
+
+    public void start() {
+        try {
+            main("127.0.0.0.1 8000".split(" "));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

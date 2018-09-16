@@ -1,11 +1,18 @@
-package top.gonefuture.netty.games;
+package top.gonefuture.netty.games.client;
 
 import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.channel.Channel;
+import io.netty.util.CharsetUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,24 +25,16 @@ import java.io.InputStreamReader;
  */
 
 
-
-
-/**
- * descripiton: 客户端
- *
- * @author: www.iknowba.cn
- * @date: 2018/3/23
- * @time: 16:40
- * @modifier:
- * @since:
- */
 public class GameClient {
 
     private String ip;
 
     private int port;
 
+    // 停止标志位
     private boolean stop = false;
+
+    private static Logger LOG = LoggerFactory.getLogger(GameClient.class);
 
     public GameClient(String ip, int port) {
         this.ip = ip;
@@ -47,11 +46,16 @@ public class GameClient {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         //启动附注类
         Bootstrap bootstrap = new Bootstrap();
-        bootstrap.group(workerGroup);
         //指定所使用的NIO传输channel
-        bootstrap.channel(NioSocketChannel.class);
+        bootstrap.group(workerGroup).channel(NioSocketChannel.class);
+
         //指定客户端初始化处理
-        bootstrap.handler(new GameClientHandler());
+        bootstrap.handler(new ChannelInitializer<SocketChannel>() {
+            @Override
+            protected void initChannel(SocketChannel ch) throws Exception {
+                ch.pipeline().addLast(new GameClientHandler());
+            }
+        });
         try {
             //连接服务
             Channel channel = bootstrap.connect(ip, port).sync().channel();
@@ -63,15 +67,17 @@ public class GameClient {
                     if (StringUtils.equalsIgnoreCase(content, "q")) {
                         System.exit(1);
                     }
-                    System.out.println("输入的信息： "+content);
-                    channel.writeAndFlush(content);
+                    LOG.debug("客户端发送的信息： "+content);
+                    channel.writeAndFlush(Unpooled.copiedBuffer(content,CharsetUtil.UTF_8));
                 }
             }
+            //指定所使用的NIO传输channel
         } catch (InterruptedException e) {
             e.printStackTrace();
             System.exit(1);
         } finally {
             workerGroup.shutdownGracefully();
+            LOG.info("释放所有的资源");
         }
     }
 
