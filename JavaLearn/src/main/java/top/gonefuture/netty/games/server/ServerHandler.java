@@ -35,6 +35,7 @@ class ServerHandler extends SimpleChannelInboundHandler<ByteBuf> {
     //  当客户端连上服务器的时候触发此函数
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        ctx.writeAndFlush(Unpooled.copiedBuffer("连接时发送信息到客户端",CharsetUtil.UTF_8));
         GameCacheManager gameCacheManager = GameCacheManager.getInstance();
 
         gameCacheManager.put("hero", RoleLoginService.createRole());

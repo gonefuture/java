@@ -31,7 +31,6 @@ public class Main {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("server.xml");
 
-        log.info("================="+context.getBean("roleMoveService"));
 
 
         log.info("关闭");

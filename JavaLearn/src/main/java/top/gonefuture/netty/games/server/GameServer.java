@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+
 
 /**
  * @author gonefuture  gonefuture@qq.com
@@ -23,6 +26,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Component
 public class GameServer {
+
+    @Resource
+    private  ServerHandler serverHandler;
 
     //绑定端口
     public void bind(int port) throws Exception {
@@ -42,7 +48,7 @@ public class GameServer {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
                 // 这里添加业务处理handler
-                ch.pipeline().addLast( new ServerHandler());
+                ch.pipeline().addLast( serverHandler);
             }
         });
 
@@ -66,6 +72,7 @@ public class GameServer {
     }
 
 
+    @PostConstruct
     public void start() {
         try {
             main("127.0.0.0.1 8000".split(" "));

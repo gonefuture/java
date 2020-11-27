@@ -14,6 +14,5 @@
 
     <!-- 传统方法配置BEAN -->
     <!--<bean id="roleMoveService" class="top.gonefuture.netty.games.service.RoleMoveService" />-->
-    <bean id="gameServer" class="top.gonefuture.netty.games.server.GameServer"  init-method="start"/>
 
 </beans>
