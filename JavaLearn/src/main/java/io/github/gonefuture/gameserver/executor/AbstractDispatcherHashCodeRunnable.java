@@ -24,12 +24,6 @@ public abstract class AbstractDispatcherHashCodeRunnable implements Runnable{
      */
     private long submitTime;
 
-
-    /**
-     *  执行的任务
-     */
-    abstract public void doRun();
-
     /**
      *  用于分发的编号
      */
@@ -39,6 +33,11 @@ public abstract class AbstractDispatcherHashCodeRunnable implements Runnable{
      *  任务类型，同一种类型任务添加一种任务即可
      */
     abstract String name();
+
+    /**
+     *  执行的任务
+     */
+    abstract public void doRun();
 
 
     @Override

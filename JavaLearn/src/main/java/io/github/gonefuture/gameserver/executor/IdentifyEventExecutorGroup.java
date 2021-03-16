@@ -4,6 +4,7 @@ import com.alibaba.druid.util.DaemonThreadFactory;
 import com.alibaba.druid.util.StringUtils;
 
 import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
@@ -106,10 +107,43 @@ public class IdentifyEventExecutorGroup {
         }, delay, timeUnit);
     }
 
+    /**
+     * 检查名字是否为空
+     */
     private static void checkName(String name) {
         if (StringUtils.isEmpty(name)) {
             throw new IllegalArgumentException("name is null!");
         }
+    }
+
+    /**
+     * 添加定时器任务，该任务按照周期执行
+     */
+    public static ScheduledFuture<?> addScheduleAtFixedRate(int dispatcher, String name, long initialDelay, long period, TimeUnit unit, Runnable runnable) {
+        return addScheduleAtFixedRate(new AbstractDispatcherHashCodeRunnable() {
+
+            @Override
+            int getDispatcherHashCode() {
+                return dispatcher;
+            }
+
+            @Override
+            String name() {
+                return name;
+            }
+
+            @Override
+            public void doRun() {
+                runnable.run();
+            }
+        }, initialDelay, period, unit);
+    }
+
+    private static ScheduledFuture<?> addScheduleAtFixedRate(AbstractDispatcherHashCodeRunnable dispatcherHashCodeRunnable, long initialDelay, long period, TimeUnit unit) {
+        checkName(dispatcherHashCodeRunnable.name());
+        EventExecutor eventExecutor = takeExecutor(dispatcherHashCodeRunnable.getDispatcherHashCode());
+        dispatcherHashCodeRunnable.sumbit(eventExecutor.getIndex(), true);
+        return eventExecutor.addScheduleTakAtFixedRate(dispatcherHashCodeRunnable, initialDelay, period, unit);
     }
 
 

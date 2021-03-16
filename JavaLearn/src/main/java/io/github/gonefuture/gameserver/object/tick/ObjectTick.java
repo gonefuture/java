@@ -1,5 +1,6 @@
 package io.github.gonefuture.gameserver.object.tick;
 
+import io.github.gonefuture.gameserver.executor.IdentifyEventExecutorGroup;
 import io.github.gonefuture.gameserver.object.AbstractVisibleObject;
 
 import java.lang.ref.WeakReference;
@@ -30,7 +31,7 @@ public class ObjectTick<T extends AbstractVisibleObject> implements Runnable {
     /**
      *  定时任务
      */
-    private ScheduledFuture future;
+    private ScheduledFuture<?> future;
 
     /**
      *  心跳业务
@@ -92,5 +93,29 @@ public class ObjectTick<T extends AbstractVisibleObject> implements Runnable {
             }
         }
         return success;
+    }
+
+    /**
+     *  尝试定时
+     */
+    private void trySchedule() {
+        if (close.get()) {
+            // 定时器已经关闭
+            return;
+        }
+        if (pause.get()) {
+            // 定时器已经暂停
+            return;
+        }
+        T obj = owner.get();
+        if (obj == null) {
+            throw new RuntimeException("tick obj was recycled");
+        }
+        if (future != null && !future.isCancelled()) {
+            return;
+        }
+        // 使用
+        future = IdentifyEventExecutorGroup.addScheduleAtFixedRate(obj.getDispatcherHashCode(), tickType.name(),
+                initialDelay, period, timeUnit, this);
     }
 }
