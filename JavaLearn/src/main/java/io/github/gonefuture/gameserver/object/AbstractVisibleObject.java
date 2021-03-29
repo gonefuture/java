@@ -8,7 +8,7 @@ import io.github.gonefuture.gameserver.object.resource.SpawnResource;
 import io.github.gonefuture.gameserver.object.tick.ObjectTick;
 import io.github.gonefuture.gameserver.object.tick.ObjectTickType;
 import io.github.gonefuture.gameserver.object.util.DirectionEnum;
-import io.github.gonefuture.gameserver.update.CreatureUpdateType;
+import io.github.gonefuture.gameserver.object.update.CreatureUpdateType;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

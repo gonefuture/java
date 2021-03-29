@@ -1,4 +1,4 @@
-package io.github.gonefuture.gameserver.update;
+package io.github.gonefuture.gameserver.object.update;
 
 /**
  * 定时更新的任务类型
