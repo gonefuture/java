@@ -21,4 +21,13 @@ public class Observer<L extends IObserver> {
      */
     private L o;
 
+    private ObserverInvalidType invalidType;
+
+    Observer(ObserverSupport<L> support, L o, int version, ObserverInvalidType invalidType) {
+        this.supportWeakReference = new WeakReference<>(support);
+        this.o = o;
+        this.version = version;
+        this.invalidType = invalidType;
+    }
+
 }
