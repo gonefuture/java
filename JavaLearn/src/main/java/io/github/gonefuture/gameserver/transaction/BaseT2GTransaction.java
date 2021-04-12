@@ -29,7 +29,7 @@ public abstract class BaseT2GTransaction<ReturnMsg> {
     private AtomicBoolean run = new AtomicBoolean(false);
 
     /**
-     *   是否执行事务
+     *   是否执行事务,一般里面会有先在跨服前执行的逻辑
      * @param transferPlayer 跨服玩家
      * @return 是否开始事务到游戏服执行，返回false,取消事务
      */
